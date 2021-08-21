@@ -7,6 +7,7 @@ target/
 .project
 
 build
+bin/
 
 # Compiled class file
 *.class

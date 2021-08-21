@@ -13,35 +13,38 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 class EventNotifierTest {
 
-  @Mock
-  private EventNotifier eventNotifier;
+	@Mock
+	private EventNotifier eventNotifier;
 
-  @Mock
-  private BannedUsersClient bannedUsersClient;
+	@Mock
+	private BannedUsersClient bannedUsersClient;
 
-  @Test
-  void voidMethodStubbing() {
-    // Mockito.when(eventNotifier.notifyNewUserCreation("duke")).thenReturn("duke");
-    // Mockito.doThrow(new RuntimeException("Error")).when(eventNotifier).notifyNewUserCreation("duke");
+	@Test
+	void voidMethodStubbing() {
+		// the commented out code will not compile b/c EventNotifier#notifyNewUserCreation(...) returns
+		// void
+		// Mockito.when(eventNotifier.notifyNewUserCreation("duke")).thenReturn("duke");
+		// Mockito.doThrow(new
+		// RuntimeException("Error")).when(eventNotifier).notifyNewUserCreation("duke");
 
-    Mockito
-      .doNothing()
-      .doThrow(new RuntimeException("Error"))
-      .when(eventNotifier).notifyNewUserCreation("duke");
+		// on the first invocation, nothing happens; on the second invocation, a RunTimeException is
+		// thrown
+		Mockito.doNothing().doThrow(new RuntimeException("Error")).when(eventNotifier)
+				.notifyNewUserCreation("duke");
 
-    eventNotifier.notifyNewUserCreation("duke");
-    assertThrows(RuntimeException.class, () -> eventNotifier.notifyNewUserCreation("duke"));
-  }
+		eventNotifier.notifyNewUserCreation("duke");
+		assertThrows(RuntimeException.class, () -> eventNotifier.notifyNewUserCreation("duke"));
+	}
 
-  @Test
-  void doReturnExample() {
+	@Test
+	void doReturnExample() {
 
-    // Mockito.when(bannedUsersClient.amountOfBannedAccounts()).thenReturn(42);
+		Mockito.when(bannedUsersClient.amountOfBannedAccounts()).thenReturn(42);
 
-    Mockito.doReturn(42).when(bannedUsersClient).amountOfBannedAccounts();
+		Mockito.doReturn(42).when(bannedUsersClient).amountOfBannedAccounts();
 
-    // Mockito.doReturn("DUKE").when(bannedUsersClient).amountOfBannedAccounts();
+		// Mockito.doReturn("DUKE").when(bannedUsersClient).amountOfBannedAccounts();
 
-    System.out.println(bannedUsersClient.amountOfBannedAccounts());
-  }
+		System.out.println(bannedUsersClient.amountOfBannedAccounts());
+	}
 }

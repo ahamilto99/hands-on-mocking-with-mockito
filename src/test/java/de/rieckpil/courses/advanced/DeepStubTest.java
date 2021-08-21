@@ -14,21 +14,21 @@ public class DeepStubTest {
   @Test
   void withoutDeepStubs() {
 
-    ContactInformation contactInformation = Mockito.mock(ContactInformation.class);
+    ContactInformation contactInfo = Mockito.mock(ContactInformation.class);
     Address address = Mockito.mock(Address.class);
 
-    Mockito.when(contactInformation.getAddress()).thenReturn(address);
+    Mockito.when(contactInfo.getAddress()).thenReturn(address);
     Mockito.when(address.getCity()).thenReturn("Berlin");
 
-    System.out.println(contactInformation.getAddress().getCity());
+    System.out.println(contactInfo.getAddress().getCity());
   }
 
   @Test
   void deepStubs() {
-    ContactInformation contactInformation = Mockito.mock(ContactInformation.class, Answers.RETURNS_DEEP_STUBS);
+    ContactInformation contactInfo = Mockito.mock(ContactInformation.class, Answers.RETURNS_DEEP_STUBS);
 
-    Mockito.when(contactInformation.getAddress().getCity()).thenReturn("Berlin");
+    Mockito.when(contactInfo.getAddress().getCity()).thenReturn("Berlin");
 
-    System.out.println(contactInformation.getAddress().getCity());
+    System.out.println(contactInfo.getAddress().getCity());
   }
 }

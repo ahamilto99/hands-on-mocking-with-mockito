@@ -1,11 +1,12 @@
 package de.rieckpil.courses.mocking;
 
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import de.rieckpil.courses.BannedUsersClient;
 import de.rieckpil.courses.JpaUserRepository;
 import de.rieckpil.courses.RegistrationService;
 import de.rieckpil.courses.UserRepository;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 class RegistrationServiceV1Test {
 
